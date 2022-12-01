@@ -1,0 +1,18 @@
+[tool.ruff]
+line-length = 88
+ignore = ["I001"]  # does not respect line-length setting
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.10"
+warn_unused_configs = true
+ignore_missing_imports = true
+follow_imports = 'normal'
+warn_redundant_casts = true
+show_error_codes = true
