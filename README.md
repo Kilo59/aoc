@@ -1,3 +1,5 @@
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/Kilo59/aoc/main.svg)](https://results.pre-commit.ci/latest/github/Kilo59/aoc/main)
+
 # aoc
 
 [Advent of Code](https://adventofcode.com/)
