@@ -9,7 +9,7 @@ def ingest_inventory_sums(input_file: Path) -> Generator[int, None, None]:
     current_elf: list[int] = []
 
     with open(input_file) as f_in:
-        for line in f_in.readlines():
+        for line in f_in:
             # check for blank line indicating another elf's inventory
             if line.startswith("\n"):
                 yield sum(current_elf)
@@ -43,8 +43,7 @@ if __name__ == "__main__":
     for elf_no, calorie_sum in enumerate(ingest_inventory_sums(input_file), start=1):
         if calorie_sum >= max_:
             max_ = calorie_sum
-            print(f"New leader - Elf {elf_no} - {calorie_sum} kCal")
-
+            print(f"New leader - Elf {elf_no} - {max_} kCal")
     print(f"Final Leader: {max_}\n")
 
     # Part 2
@@ -55,7 +54,7 @@ if __name__ == "__main__":
         top_q.put(cal_sum)
 
     top_cals: list[int] = []
-    for i in range(3):
+    for _ in range(3):
         value = top_q.get()
         top_cals.append(value)
 
