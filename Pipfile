@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 jupyterlab = "*"
+nb-mypy = "*"
 devtools = {extras = ["pygments"], version = "*"}
 
 [dev-packages]
