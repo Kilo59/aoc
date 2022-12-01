@@ -9,7 +9,7 @@ nb-mypy = "*"
 devtools = {extras = ["pygments"], version = "*"}
 
 [dev-packages]
-black = "*"
+black = {extras = ["jupyter"], version = "*"}
 isort = "*"
 mypy = "*"
 pre-commit = "*"
