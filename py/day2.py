@@ -4,24 +4,24 @@ from pathlib import Path
 from typing import ClassVar, Generator
 
 
-class Item:
+class RPSBase:
     score: ClassVar[int]
 
     @property
-    def beats(self) -> type[Item]:
+    def beats(self) -> type[RPSBase]:
         # can't define this as a class level attribute, classes hasn't been defined yet
         raise NotImplementedError(
             f"{self.__class__.__name__} must return the class it beats"
         )
 
-    def __gt__(self, other: Item) -> bool:
+    def __gt__(self, other: RPSBase) -> bool:
         return isinstance(other, self.beats)
 
     def __eq__(self, other: object) -> bool:
         return self.__class__ == other.__class__
 
 
-class Rock(Item):
+class Rock(RPSBase):
     score = 1
 
     @property
@@ -29,7 +29,7 @@ class Rock(Item):
         return Scissors
 
 
-class Paper(Item):
+class Paper(RPSBase):
     score = 2
 
     @property
@@ -37,7 +37,7 @@ class Paper(Item):
         return Rock
 
 
-class Scissors(Item):
+class Scissors(RPSBase):
     score = 3
 
     @property
@@ -59,7 +59,9 @@ def rps_factory(char: str) -> Rock | Paper | Scissors:
     return item_class()
 
 
-def ingest_rps_picks(input_file: Path) -> Generator[tuple[Item, Item], None, None]:
+def ingest_rps_picks(
+    input_file: Path,
+) -> Generator[tuple[Rock | Paper | Scissors, Rock | Paper | Scissors], None, None]:
     with open(input_file) as f_in:
         for line in f_in:
             opponent_pick, my_pick = line.split()
