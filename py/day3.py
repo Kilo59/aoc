@@ -23,10 +23,7 @@ def ingest_items(input_file: Path) -> Generator[tuple[str, str], None, None]:
 
 def find_common_character(collections: tuple[str, str]) -> str:
     s1, s2 = collections
-    common_items = set()
-    for c in s1:
-        if c in s2:
-            common_items.add(c)
+    common_items = {c for c in s1 if c in s2}
     return "".join(common_items)
 
 
@@ -49,7 +46,7 @@ def grouper(iterable: Iterable[str], n: int) -> Iterable[tuple[str, ...]]:
 def ingest_items_2(input_file: Path) -> Generator[tuple[str, str, str], None, None]:
     with open(input_file) as f_in:
         for item in grouper(f_in, 3):
-            yield tuple([x.rstrip() for x in item])  # type: ignore[misc]
+            yield tuple(x.rstrip() for x in item)
 
 
 def find_common_item(group: tuple[str, str, str]) -> str:
