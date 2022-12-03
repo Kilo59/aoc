@@ -7,6 +7,7 @@ name = "pypi"
 jupyterlab = "*"
 nb-mypy = "*"
 devtools = {extras = ["pygments"], version = "*"}
+codetiming = "*"
 
 [dev-packages]
 black = {extras = ["jupyter"], version = "*"}
