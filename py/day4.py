@@ -4,8 +4,7 @@ from typing import Callable, Generator
 
 def range_from_str(s: str) -> range:
     i1, i2 = s.split("-")
-    r = range(int(i1), int(i2))
-    return r
+    return range(int(i1), int(i2))
 
 
 def ingest_range_pairs(input_file: Path) -> Generator[tuple[range, range], None, None]:
