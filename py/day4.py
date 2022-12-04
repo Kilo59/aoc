@@ -17,9 +17,7 @@ def ingest_range_pairs(input_file: Path) -> Generator[tuple[range, range], None,
 def full_overlap(r1: range, r2: range) -> bool:
     if r1.start >= r2.start and r1.stop <= r2.stop:
         return True
-    if r2.start >= r1.start and r2.stop <= r1.stop:
-        return True
-    return False
+    return r2.start >= r1.start and r2.stop <= r1.stop
 
 
 def partial_overlap(r1: range, r2: range) -> bool:
@@ -28,19 +26,17 @@ def partial_overlap(r1: range, r2: range) -> bool:
     for range_, set_ in zip((r1, r2), (r1_set, r2_set)):
         set_.add(range_.stop)  # end of range should be included
 
-    if r1_set.intersection(r2_set):
-        return True
-    return False
+    return bool(r1_set.intersection(r2_set))
 
 
 def check_overlapping_pairs(
     input_file: Path, is_overlap_check: Callable[[range, range], bool]
 ):
-    overlap_count = 0
-    for pairs in ingest_range_pairs(input_file):
-
-        if is_overlap_check(*pairs):
-            overlap_count += 1
+    overlap_count = sum(
+        1
+        for pairs in ingest_range_pairs(input_file)
+        if is_overlap_check(*pairs)
+    )
 
     print(f"{overlap_count=}")
 

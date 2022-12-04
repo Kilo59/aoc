@@ -26,16 +26,17 @@ class Interval:
         return f"Interval({self._start}, {self._stop})"
 
     def __eq__(self, other) -> bool:
-        if not isinstance(other, self.__class__):
-            return False
-        return self._start == other._start and self._stop == other._stop
+        return (
+            self._start == other._start and self._stop == other._stop
+            if isinstance(other, self.__class__)
+            else False
+        )
 
     def __contains__(self, other) -> bool:
         return self._set.issuperset(set(other))
 
     def __iter__(self):
-        for i in self._range:
-            yield i
+        yield from self._range
 
     def intersection(self, other) -> set[int]:  # type: ignore[valid-type]
         return self._set.intersection(set(other))
