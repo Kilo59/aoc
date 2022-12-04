@@ -33,9 +33,7 @@ def check_overlapping_pairs(
     input_file: Path, is_overlap_check: Callable[[range, range], bool]
 ):
     overlap_count = sum(
-        1
-        for pairs in ingest_range_pairs(input_file)
-        if is_overlap_check(*pairs)
+        1 for pairs in ingest_range_pairs(input_file) if is_overlap_check(*pairs)
     )
 
     print(f"{overlap_count=}")
