@@ -15,10 +15,7 @@ class Stack(Generic[T]):
     def __init__(
         self, items: Iterable[T] | None = None, black_list: list | None = None
     ) -> None:
-        if items:
-            self._deque = deque(items)
-        else:
-            self._deque = deque()
+        self._deque = deque(items) if items else deque()
         self.black_list = black_list or []
 
     def __len__(self) -> int:
@@ -35,9 +32,8 @@ class Stack(Generic[T]):
     # Part 2
     def partition(self, quantity) -> Stack[T]:
         """Slices off and returns a new stack composed of the top `n` items."""
-        partitioned_items = [self._deque.pop() for x in range(quantity)]
-        new_stack_slice = Stack(reversed(partitioned_items))
-        return new_stack_slice
+        partitioned_items = [self._deque.pop() for _ in range(quantity)]
+        return Stack(reversed(partitioned_items))
 
     def append(self, item: T):
         self._deque.append(item)
@@ -55,16 +51,14 @@ class Stack(Generic[T]):
 
     @classmethod
     def _parse_line(cls, line: str) -> list[str]:
-        return [x for x in line[1::4]]
+        return list(line[1::4])
 
     @classmethod
     def from_2d_array(
         cls, array: list[list[T]], black_list: list | None = None
     ) -> list[Stack[T]]:
         black_list = black_list or []
-        stacks = [
-            cls(black_list=black_list) for x in range(len(array[0]))
-        ]  # assume all rows are same length
+        stacks = [cls(black_list=black_list) for _ in range(len(array[0]))]
 
         # starting from bottom row
         for row in array[::-1]:
@@ -101,7 +95,7 @@ class CargoShip(Generic[KT, VT]):
 
     @property
     def total_cargo(self):
-        return sum([len(c) for c in self.cargo])
+        return sum(len(c) for c in self.cargo)
 
     def __init__(self, cargo: list[VT] | None = None):
         self.cargo = cargo or []
