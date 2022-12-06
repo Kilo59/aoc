@@ -6,10 +6,10 @@
 
 ## Days
 
-- [x] https://adventofcode.com/2022/day/1
-- [x] https://adventofcode.com/2022/day/2
-- [x] https://adventofcode.com/2022/day/3
-- [x] https://adventofcode.com/2022/day/4
-- [ ] https://adventofcode.com/2022/day/5
-- [ ] https://adventofcode.com/2022/day/6
-- [ ] https://adventofcode.com/2022/day/7
+- [x] [Day 1](py/day1.ipynb)
+- [x] [Day 2](py/day2.ipynb)
+- [x] [Day 3](py/day3.ipynb)
+- [x] [Day 4](py/day4.ipynb)
+- [x] [Day 5](py/day5.ipynb)
+- [ ] [Day 6](py/day6.ipynb)
+- [ ] [Day 7](py/day7.ipynb)
