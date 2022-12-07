@@ -4,10 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+codetiming = "*"
+devtools = {extras = ["pygments"], version = "*"}
+glom = "*"
 jupyterlab = "*"
 nb-mypy = "*"
-devtools = {extras = ["pygments"], version = "*"}
-codetiming = "*"
 
 [dev-packages]
 black = {extras = ["jupyter"], version = "*"}
