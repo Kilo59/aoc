@@ -1,22 +1,14 @@
 from collections import deque
 from pathlib import Path
-from typing import NamedTuple
 
 
-class MarkerDetails(NamedTuple):
-    marker: str
-    position: int
-
-
-def find_marker(buffer: str, marker_length: int = 4) -> MarkerDetails:
+def find_marker(buffer: str, marker_length: int = 4) -> int:
     possible_marker: deque[str] = deque(maxlen=marker_length)
     for i, c in enumerate(buffer):
-
         if len(set(possible_marker)) == marker_length:
-            marker = buffer[i - marker_length : i]
+            marker = "".join(possible_marker)
             print(f"Marker found after {i} - {marker}")
-            return MarkerDetails(marker=marker, position=i)
-
+            return i
         possible_marker.append(c)
     raise ValueError("No marker found in buffer")
 
