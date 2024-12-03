@@ -38,7 +38,6 @@ def check_overlapping_pairs(
 ):
     overlap_count = 0
     for pairs in ingest_range_pairs(input_file):
-
         if is_overlap_check(*pairs):
             overlap_count += 1
 
