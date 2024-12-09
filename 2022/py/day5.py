@@ -70,7 +70,7 @@ class Stack(Generic[T]):
     def from_diagram(cls, diagram_txt: str) -> list[Stack[str]]:
         _2d_array = [cls._parse_line(ls) for ls in diagram_txt.splitlines()]
         return cls.from_2d_array(
-            _2d_array,
+            _2d_array,  # type: ignore[arg-type]
             black_list=[" "],  # type: ignore[arg-type,return-value]
         )
 
