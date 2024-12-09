@@ -8,7 +8,6 @@ T = TypeVar("T")
 
 
 class Stack(Generic[T]):
-
     _deque: deque
     black_list: list
 
@@ -71,7 +70,8 @@ class Stack(Generic[T]):
     def from_diagram(cls, diagram_txt: str) -> list[Stack[str]]:
         _2d_array = [cls._parse_line(ls) for ls in diagram_txt.splitlines()]
         return cls.from_2d_array(
-            _2d_array, black_list=[" "]  # type: ignore[arg-type,return-value]
+            _2d_array,  # type: ignore[arg-type]
+            black_list=[" "],  # type: ignore[arg-type,return-value]
         )
 
 
@@ -132,13 +132,10 @@ class CargoShip(Generic[KT, VT]):
 def extract_initial_cargo_stacks(input_file: Path) -> list[Stack]:
     starting_stacks: list[str] = []
     with open(input_file) as f_in:
-
         while True:
             line = next(f_in)
             if line == "\n":  # starting stacks section ends
-                starting_stacks = starting_stacks[
-                    :-1
-                ]  # remove the unneeded stack labels
+                starting_stacks = starting_stacks[:-1]  # remove the unneeded stack labels
                 return Stack.from_diagram("".join(starting_stacks))
             starting_stacks.append(line)
 

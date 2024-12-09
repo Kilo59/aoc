@@ -10,18 +10,16 @@ devtools = {extras = ["pygments"], version = "*"}
 codetiming = "*"
 
 [dev-packages]
-black = {extras = ["jupyter"], version = "*"}
-isort = "*"
 mypy = "*"
 pre-commit = "*"
 ruff = "*"
 jupyterlab-code-formatter = "*"
 
 [requires]
-python_version = "3.10"
+python_version = "3.12"
 
 [scripts]
-fmt = "black ."
-sort = "isort ."
+lint = "ruff lint ."
+fmt = "ruff format ."
 type = "mypy ."
 notebooks = "jupyter lab"
