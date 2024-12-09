@@ -2,7 +2,7 @@
 target-version = "py312"
 line-length = 90
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "**.ipynb" = ["F404"]
 
 [tool.mypy]
