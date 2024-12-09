@@ -135,9 +135,7 @@ def extract_initial_cargo_stacks(input_file: Path) -> list[Stack]:
         while True:
             line = next(f_in)
             if line == "\n":  # starting stacks section ends
-                starting_stacks = starting_stacks[
-                    :-1
-                ]  # remove the unneeded stack labels
+                starting_stacks = starting_stacks[:-1]  # remove the unneeded stack labels
                 return Stack.from_diagram("".join(starting_stacks))
             starting_stacks.append(line)
 
