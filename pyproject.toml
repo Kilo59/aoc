@@ -1,6 +1,20 @@
 [tool.ruff]
 target-version = "py312"
 line-length = 90
+lint.select = ["ALL"]
+lint.ignore = [
+    "D", # docstring
+    "T201", # use of print
+    "TD", # todo comments 
+    "RET504", # unnecessary assignment
+    "S101", # use of assert
+    "PTH123", # use of open()
+    "COM812", # always trailing comma
+    "EM101", # raw string in exception
+    "EM102", # f-string in exception
+    "ERA001", # commented out code
+    "TRY003", # raise vanilla args
+]
 
 [tool.ruff.lint.per-file-ignores]
 "**.ipynb" = ["F404"]
