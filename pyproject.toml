@@ -14,6 +14,8 @@ lint.ignore = [
     "EM102", # f-string in exception
     "ERA001", # commented out code
     "TRY003", # raise vanilla args
+    "INP001", # implicit namespace package
+    "B018", # 'useless' expression
 ]
 
 [tool.ruff.lint.per-file-ignores]

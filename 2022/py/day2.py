@@ -3,7 +3,8 @@ from __future__ import annotations
 import enum
 import functools
 from pathlib import Path
-from typing import Callable, ClassVar, Generator, Iterator, TypeAlias
+from typing import ClassVar, TypeAlias
+from collections.abc import Callable, Generator, Iterator
 
 
 class RPSBase:

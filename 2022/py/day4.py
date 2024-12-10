@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Callable, Generator
+from collections.abc import Callable, Generator
 
 
 def range_from_str(s: str) -> range:

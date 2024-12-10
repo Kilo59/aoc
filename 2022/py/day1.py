@@ -1,6 +1,6 @@
 from pathlib import Path
 from queue import PriorityQueue
-from typing import Generator
+from collections.abc import Generator
 
 
 def ingest_inventory_sums(input_file: Path) -> Generator[int, None, None]:

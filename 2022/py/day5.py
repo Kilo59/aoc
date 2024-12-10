@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 from collections import deque
+from collections.abc import Generator, Iterable
 from pathlib import Path
-from typing import Generator, Generic, Iterable, NamedTuple, TypeVar
+from typing import Generic, NamedTuple, Self, TypeVar
 
 T = TypeVar("T")
 
@@ -21,7 +22,7 @@ class Stack(Generic[T]):
         return len(self._deque)
 
     # Part 2
-    def __iadd__(self, other: Stack):
+    def __iadd__(self, other: Stack) -> Self:
         self._deque += other._deque
         return self
 
@@ -29,15 +30,15 @@ class Stack(Generic[T]):
         return f"Stack{repr(self._deque)[5:]}"
 
     # Part 2
-    def partition(self, quantity) -> Stack[T]:
+    def partition(self, quantity: int) -> Stack[T]:
         """Slices off and returns a new stack composed of the top `n` items."""
         partitioned_items = [self._deque.pop() for _ in range(quantity)]
         return Stack(reversed(partitioned_items))
 
-    def append(self, item: T):
+    def append(self, item: T) -> None:
         self._deque.append(item)
 
-    def add(self, item: T):
+    def add(self, item: T) -> None:
         if item in self.black_list:
             raise ValueError(f"{item} is on `black_list` - {self.black_list}")
         self.append(item)
@@ -94,10 +95,10 @@ class CargoShip(Generic[KT, VT]):
     cargo: list[VT]
 
     @property
-    def total_cargo(self):
+    def total_cargo(self) -> int:
         return sum(len(c) for c in self.cargo)
 
-    def __init__(self, cargo: list[VT] | None = None):
+    def __init__(self, cargo: list[VT] | None = None) -> None:
         self.cargo = cargo or []
 
     def __len__(self) -> int:
@@ -113,7 +114,7 @@ class CargoShip(Generic[KT, VT]):
             raise IndexError(f"Incompatible `idx` {idx} expected 1 - {num_cargo}")
         return self.cargo[adjusted_idx]
 
-    def move_cargo(self, source_idx: int, target_idx: int, quantity: int = 1):
+    def move_cargo(self, source_idx: int, target_idx: int, quantity: int = 1) -> None:
         for _ in range(quantity):
             source_stack = self[source_idx]  # type: ignore[index]
             target_stack = self[target_idx]  # type: ignore[index]
@@ -121,7 +122,7 @@ class CargoShip(Generic[KT, VT]):
             item = source_stack.pop()
             target_stack.add(item)
 
-    def process_instruction(self, instruction: Instruction):
+    def process_instruction(self, instruction: Instruction) -> None:
         initial_cargo = self.total_cargo
         self.move_cargo(
             instruction.source_idx, instruction.target_idx, instruction.quantity
@@ -157,7 +158,7 @@ def run_excercise(
     initial_stacks: list[Stack],
     ship_class: type[CargoShip],
     instructions: Iterable[Instruction],
-):
+) -> None:
     ship = ship_class(initial_stacks)
     print(f"Initial state\n{ship}")
     ship.cargo
@@ -180,7 +181,7 @@ def run_excercise(
 
 
 class CrateMover9001(CargoShip):
-    def move_cargo(self, source_idx: int, target_idx: int, quantity: int = 1):
+    def move_cargo(self, source_idx: int, target_idx: int, quantity: int = 1) -> None:
         source_stack = self[source_idx]  # type: ignore[index]
         target_stack = self[target_idx]  # type: ignore[index]
 
