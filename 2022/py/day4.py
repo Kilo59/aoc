@@ -1,5 +1,5 @@
-from pathlib import Path
 from collections.abc import Callable, Generator
+from pathlib import Path
 
 
 def range_from_str(s: str) -> range:
@@ -35,7 +35,7 @@ def partial_overlap(r1: range, r2: range) -> bool:
 
 def check_overlapping_pairs(
     input_file: Path, is_overlap_check: Callable[[range, range], bool]
-):
+) -> None:
     overlap_count = 0
     for pairs in ingest_range_pairs(input_file):
         if is_overlap_check(*pairs):

@@ -16,10 +16,17 @@ lint.ignore = [
     "TRY003", # raise vanilla args
     "INP001", # implicit namespace package
     "B018", # 'useless' expression
+    "TCH003", # stdlib type-checking imports
+    "UP040", # type keyword is too new
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"**.ipynb" = ["F404"]
+"**.ipynb" = [
+    "F404",
+    "ANN001", # function argument annotations
+    "ANN201", # annotations of public functions
+    "ANN204", # annotations of __dunder__ methods
+    ]
 
 [tool.mypy]
 python_version = "3.12"
