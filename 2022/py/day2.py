@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import enum
 import functools
+from collections.abc import Callable, Generator, Iterator
 from pathlib import Path
 from typing import ClassVar, TypeAlias
-from collections.abc import Callable, Generator, Iterator
 
 
 class RPSBase:

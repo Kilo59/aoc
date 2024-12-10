@@ -1,6 +1,6 @@
 import string
-from pathlib import Path
 from collections.abc import Generator, Iterable
+from pathlib import Path
 
 PRIORITY_LOOKUP: dict[str, int] = {
     c: i for i, c in enumerate(string.ascii_letters, start=1)
